@@ -10,6 +10,20 @@ https://github.com/ryanimgrund/civic-signal-kit
 
 Primary maintainer.
 
+## Form-Ready Fields
+
+### Why does this repository qualify?
+
+Civic Signal Kit is a new public-interest Python toolkit that helps educators, journalists, community groups, and civic volunteers turn CSV time-series data into transparent trend summaries. It keeps thresholds, assumptions, and data-quality warnings visible, runs locally with no analytics or remote logging, and is designed to make civic data communication more reproducible and maintainable.
+
+### How will you use API credits for your project?
+
+I would use API credits to reduce maintainer load: triage issues, turn user reports into reproducible tests, review pull requests for hidden assumptions, improve docs/examples, draft release notes, and build maintainer automation that keeps civic data summaries clear and responsible.
+
+### Anything else we should know?
+
+This is early-stage as of June 5, 2026, so I am not claiming broad adoption yet. The repo is public, MIT-licensed, tested in CI, documented for contributors, and intended for public-good users who need transparent local tools.
+
 ## Why This Project Qualifies
 
 Civic Signal Kit is a public-interest Python toolkit that helps educators, journalists, community groups, and civic volunteers turn CSV time-series data into transparent trend summaries. It keeps thresholds and assumptions visible, runs locally without analytics or remote logging, and is designed for responsible communication around civic data.
