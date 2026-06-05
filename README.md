@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/ryanimgrund/civic-signal-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/ryanimgrund/civic-signal-kit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/civic-signal-kit.svg)](https://pypi.org/project/civic-signal-kit/)
 
 Civic Signal Kit is a small Python toolkit for turning plain CSV time-series data into transparent public-interest trend summaries.
 
@@ -63,6 +64,12 @@ Output:
 - Rolling window: 7 point(s)
 - Thresholds: baseline>=0, elevated>=25, high>=50
 - Classification uses the highest threshold less than or equal to the latest rolling average.
+```
+
+## Install
+
+```sh
+python -m pip install civic-signal-kit
 ```
 
 ## Install for Local Development

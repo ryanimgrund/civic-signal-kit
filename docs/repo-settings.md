@@ -8,9 +8,7 @@ Transparent trend summaries for public-interest CSV time-series data.
 
 ## Website
 
-Leave blank until documentation is published.
-
-After PyPI publication, use the PyPI project URL.
+https://pypi.org/project/civic-signal-kit/
 
 ## Topics
 
@@ -32,9 +30,9 @@ After PyPI publication, use the PyPI project URL.
 
 ## Releases
 
-- Create a GitHub Release for `v0.2.0`.
-- Use `docs/releases/v0.2.0.md` as the release body.
-- Mark it as the latest release.
+- Keep `v0.2.0` marked as the latest release.
+- Use `docs/releases/v0.2.0.md` as the release body reference.
+- Link the PyPI package from future release notes after each version is live.
 
 ## Branch Protection
 

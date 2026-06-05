@@ -22,7 +22,7 @@ I would use API credits to reduce maintainer load: triage issues, turn user repo
 
 ### Anything else we should know?
 
-This is early-stage as of June 5, 2026, so I am not claiming broad adoption yet. The repo is public, MIT-licensed, tested in CI, has a v0.2.0 release path, and is documented for public-good users who need transparent local tools.
+This is early-stage as of June 5, 2026, so I am not claiming broad adoption yet. The repo is public, MIT-licensed, tested in CI, has a v0.2.0 GitHub Release, is published on PyPI, and is documented for public-good users who need transparent local tools.
 
 ## Why This Project Qualifies
 
@@ -38,4 +38,4 @@ API credits would reduce maintainer load by helping triage user issues, draft re
 
 ## Current Caveat
 
-As of June 5, 2026, this is a new repository. The application should wait until there are public issues, releases, usage signals, or tester feedback.
+As of June 5, 2026, this is a new repository with a GitHub Release and PyPI package, but no meaningful public usage or download metrics yet. The application is stronger after there are public issues, tester feedback, or real adoption signals.
