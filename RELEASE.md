@@ -17,5 +17,6 @@
    - known limitations
    - privacy/security notes
 7. Use the prepared release notes in `docs/releases/v0.2.0.md` when publishing `v0.2.0`.
-8. Publish to PyPI when package ownership is configured.
-9. Open follow-up issues for any known release gaps.
+8. Confirm the PyPI pending publisher is configured as described in `docs/pypi-publishing.md`.
+9. Run the `Publish to PyPI` workflow from GitHub Actions.
+10. Open follow-up issues for any known release gaps.
