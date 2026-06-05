@@ -1,0 +1,45 @@
+name: Tester feedback
+description: Share feedback from trying Civic Signal Kit with a public-interest CSV.
+title: "[Feedback]: "
+labels: ["feedback", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for trying Civic Signal Kit. Do not include private, sensitive, health, student, client, or service-user data in public issues.
+  - type: textarea
+    id: context
+    attributes:
+      label: Use context
+      description: What kind of public-interest workflow were you testing?
+      placeholder: Education, journalism, community reporting, public dashboard review, nonprofit service monitoring...
+    validations:
+      required: true
+  - type: textarea
+    id: data_shape
+    attributes:
+      label: Data shape
+      description: Describe the non-sensitive CSV shape, not private row contents.
+      placeholder: Date column, numeric value column, rough row count, daily/weekly/monthly cadence.
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command used
+      description: Paste the command and thresholds you used. Remove local private paths if needed.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: clarity
+    attributes:
+      label: Was the summary understandable?
+      description: What was clear, confusing, too strong, or too cautious?
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested improvement
+      description: What would make this more useful or safer for your workflow?

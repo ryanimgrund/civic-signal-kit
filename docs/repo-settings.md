@@ -10,6 +10,8 @@ Transparent trend summaries for public-interest CSV time-series data.
 
 Leave blank until documentation is published.
 
+After PyPI publication, use the PyPI project URL.
+
 ## Topics
 
 - civic-tech
@@ -27,6 +29,12 @@ Leave blank until documentation is published.
 - Discussions: enabled when there are real users or testers
 - Projects: optional
 - Wiki: disabled unless it is actively maintained
+
+## Releases
+
+- Create a GitHub Release for `v0.2.0`.
+- Use `docs/releases/v0.2.0.md` as the release body.
+- Mark it as the latest release.
 
 ## Branch Protection
 

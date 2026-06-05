@@ -16,5 +16,6 @@
    - testing notes
    - known limitations
    - privacy/security notes
-7. Publish to PyPI when package ownership is configured.
-8. Open follow-up issues for any known release gaps.
+7. Use the prepared release notes in `docs/releases/v0.2.0.md` when publishing `v0.2.0`.
+8. Publish to PyPI when package ownership is configured.
+9. Open follow-up issues for any known release gaps.

@@ -26,6 +26,8 @@ dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/ryanimgrund/civic-signal-kit"
+Documentation = "https://github.com/ryanimgrund/civic-signal-kit#readme"
+Changelog = "https://github.com/ryanimgrund/civic-signal-kit/blob/main/CHANGELOG.md"
 Issues = "https://github.com/ryanimgrund/civic-signal-kit/issues"
 
 [project.scripts]

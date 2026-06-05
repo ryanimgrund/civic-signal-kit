@@ -108,6 +108,8 @@ python -m civic_signal_kit docs/examples/wastewater-signal.csv \
 - [Use cases](docs/use-cases.md)
 - [Pilot plan](docs/pilot-plan.md)
 - [Maintainer playbook](docs/maintainer-playbook.md)
+- [PyPI publishing](docs/pypi-publishing.md)
+- [v0.2.0 release notes](docs/releases/v0.2.0.md)
 - [OpenAI Codex OSS path](docs/openai-codex-oss-path.md)
 
 ## Project Values
