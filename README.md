@@ -1,5 +1,8 @@
 # Civic Signal Kit
 
+[![CI](https://github.com/ryanimgrund/civic-signal-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/ryanimgrund/civic-signal-kit/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Civic Signal Kit is a small Python toolkit for turning plain CSV time-series data into transparent public-interest trend summaries.
 
 It is designed for educators, journalists, community groups, public-health communicators, and civic volunteers who need to explain what changed in a dataset without hiding the assumptions.
