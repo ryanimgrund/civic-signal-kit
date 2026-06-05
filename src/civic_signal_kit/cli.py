@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from pathlib import Path
 
 from .analysis import summarize_csv
 from .render import render_json, render_markdown
@@ -25,9 +26,19 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     if args.format == "json":
-        print(render_json(summary), end="")
+        output = render_json(summary)
     else:
-        print(render_markdown(summary), end="")
+        output = render_markdown(summary)
+
+    if args.output:
+        Path(args.output).write_text(output, encoding="utf-8")
+    else:
+        print(output, end="")
+
+    if args.fail_on_notes and summary.notes:
+        print("warning: data quality notes were produced", file=sys.stderr)
+        return 3
+
     return 0
 
 
@@ -48,6 +59,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Inclusive lower-bound threshold. Can be repeated.",
     )
     parser.add_argument("--format", choices=["markdown", "json"], default="markdown")
+    parser.add_argument("--output", help="Write the rendered summary to a file instead of stdout.")
+    parser.add_argument(
+        "--fail-on-notes",
+        action="store_true",
+        help="Return exit code 3 when data-quality notes are present.",
+    )
     return parser
 
 

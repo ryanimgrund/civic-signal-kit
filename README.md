@@ -16,7 +16,9 @@ The toolkit does not give medical, legal, financial, or emergency advice. It sum
 - Compares the latest period with the previous period.
 - Classifies the latest value using user-provided thresholds.
 - Flags simple data-quality issues such as short histories, duplicate dates, and date gaps.
-- Exports a plain-language Markdown or JSON summary.
+- Exports a plain-language Markdown or JSON summary with the method and thresholds included.
+- Writes report artifacts to disk for recurring workflows.
+- Can fail a pipeline when data-quality notes are present.
 - Uses only the Python standard library.
 
 ## Example
@@ -54,6 +56,13 @@ Output:
 - Previous 7-point rolling average: 20.00
 - Change: 39.29% increase
 - Level: elevated
+- Data points used: 10
+
+## Method
+
+- Rolling window: 7 point(s)
+- Thresholds: baseline>=0, elevated>=25, high>=50
+- Classification uses the highest threshold less than or equal to the latest rolling average.
 ```
 
 ## Install for Local Development
@@ -73,10 +82,13 @@ python -m civic_signal_kit path/to/data.csv \
   --threshold baseline=0 \
   --threshold elevated=25 \
   --threshold high=50 \
-  --format markdown
+  --format markdown \
+  --output summary.md
 ```
 
 Thresholds are inclusive lower bounds. The highest threshold less than or equal to the latest rolling average becomes the level.
+
+Use `--fail-on-notes` in scheduled checks when date gaps, short histories, duplicate dates, or missing comparison windows should block publication.
 
 ## Examples
 
@@ -91,6 +103,13 @@ python -m civic_signal_kit docs/examples/wastewater-signal.csv \
   --threshold high=500
 ```
 
+## Documentation
+
+- [Use cases](docs/use-cases.md)
+- [Pilot plan](docs/pilot-plan.md)
+- [Maintainer playbook](docs/maintainer-playbook.md)
+- [OpenAI Codex OSS path](docs/openai-codex-oss-path.md)
+
 ## Project Values
 
 - Transparent assumptions.
@@ -101,7 +120,7 @@ python -m civic_signal_kit docs/examples/wastewater-signal.csv \
 
 ## Roadmap
 
-- Add examples for wastewater, air quality, attendance, and service-demand data.
+- Add examples for attendance and service-demand data.
 - Add chart export.
 - Add localization-friendly message templates.
 - Expand validation reports for messy CSVs.

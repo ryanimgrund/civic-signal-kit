@@ -22,7 +22,7 @@ I would use API credits to reduce maintainer load: triage issues, turn user repo
 
 ### Anything else we should know?
 
-This is early-stage as of June 5, 2026, so I am not claiming broad adoption yet. The repo is public, MIT-licensed, tested in CI, documented for contributors, and intended for public-good users who need transparent local tools.
+This is early-stage as of June 5, 2026, so I am not claiming broad adoption yet. The repo is public, MIT-licensed, tested in CI, has a v0.2.0 release path, and is documented for public-good users who need transparent local tools.
 
 ## Why This Project Qualifies
 
@@ -30,7 +30,7 @@ Civic Signal Kit is a public-interest Python toolkit that helps educators, journ
 
 ## Maintainer Work
 
-I maintain the code, tests, documentation, releases, issue triage, security/privacy review, and roadmap. The project includes CI, issue templates, a security policy, privacy notes, examples, release checklist, and a maintainer playbook.
+I maintain the code, tests, documentation, releases, issue triage, security/privacy review, and roadmap. The project includes CI, issue templates, a security policy, privacy notes, runnable examples, release checklist, pilot plan, and maintainer playbook.
 
 ## How API Credits Would Help
 

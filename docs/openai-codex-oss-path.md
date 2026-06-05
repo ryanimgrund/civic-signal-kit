@@ -15,6 +15,14 @@ Many public-interest teams work with simple time-series data but do not have eng
 - Maintainer triage and release history.
 - Examples for actual civic or public-interest datasets.
 
+## Evidence Already Prepared
+
+- Public MIT-licensed repository with CI and tests.
+- Runnable synthetic examples for wastewater, air quality, and service-demand style data.
+- Reproducible Markdown/JSON output that includes thresholds and method notes.
+- Maintainer docs for privacy, security, release workflow, contribution, support, and pilots.
+- Form-ready application copy that avoids adoption claims.
+
 ## Draft Qualification Answer
 
 Civic Signal Kit is a public-interest Python toolkit that helps educators, journalists, and community groups turn CSV time-series data into transparent trend summaries. It keeps assumptions and thresholds visible, has no hidden network services, and is designed for maintainable civic data communication.

@@ -34,6 +34,21 @@ def render_markdown(summary: SignalSummary) -> str:
         lines.extend(["## Data Quality Notes", ""])
         lines.extend(f"- {note}" for note in summary.notes)
         lines.append("")
+
+    lines.extend(
+        [
+            "## Method",
+            "",
+            f"- Rolling window: {summary.window} point(s)",
+            "- Thresholds: "
+            + ", ".join(
+                f"{threshold.name}>={threshold.lower_bound:g}" for threshold in summary.thresholds
+            ),
+            "- Classification uses the highest threshold less than or equal to the latest rolling average.",
+            "",
+        ]
+    )
+
     lines.extend(
         [
             "This is a data summary, not advice. Review source quality and thresholds before using it for decisions.",

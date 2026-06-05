@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 from dataclasses import dataclass
 from datetime import date, datetime
+from math import isfinite
 from pathlib import Path
 from typing import Iterable
 
@@ -11,6 +12,18 @@ from typing import Iterable
 class DataPoint:
     observed_on: date
     value: float
+
+
+@dataclass(frozen=True)
+class Threshold:
+    name: str
+    lower_bound: float
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "name": self.name,
+            "lower_bound": self.lower_bound,
+        }
 
 
 @dataclass(frozen=True)
@@ -24,6 +37,7 @@ class SignalSummary:
     level: str
     window: int
     point_count: int
+    thresholds: tuple[Threshold, ...]
     notes: tuple[str, ...] = ()
 
     def to_dict(self) -> dict[str, object]:
@@ -37,6 +51,7 @@ class SignalSummary:
             "level": self.level,
             "window": self.window,
             "point_count": self.point_count,
+            "thresholds": [threshold.to_dict() for threshold in self.thresholds],
             "notes": list(self.notes),
         }
 
@@ -93,6 +108,8 @@ def summarize_points(
     previous_average = mean(point.value for point in previous_window) if previous_window else None
     percent = percent_delta(previous_average, rolling_average)
 
+    normalized_thresholds = normalize_thresholds(thresholds or default_thresholds())
+
     return SignalSummary(
         latest_date=ordered[-1].observed_on,
         latest_value=ordered[-1].value,
@@ -100,9 +117,10 @@ def summarize_points(
         previous_rolling_average=previous_average,
         percent_change=percent,
         direction=direction_for(percent),
-        level=classify_level(rolling_average, thresholds or default_thresholds()),
+        level=classify_normalized_level(rolling_average, normalized_thresholds),
         window=window,
         point_count=len(ordered),
+        thresholds=normalized_thresholds,
         notes=tuple(data_quality_notes(ordered, window=window, has_previous_window=bool(previous_window))),
     )
 
@@ -116,13 +134,31 @@ def default_thresholds() -> dict[str, float]:
 
 
 def classify_level(value: float, thresholds: dict[str, float]) -> str:
+    return classify_normalized_level(value, normalize_thresholds(thresholds))
+
+
+def normalize_thresholds(thresholds: dict[str, float]) -> tuple[Threshold, ...]:
     if not thresholds:
         raise ValueError("At least one threshold is required")
-    ordered = sorted(thresholds.items(), key=lambda item: item[1])
-    level = ordered[0][0]
-    for name, lower_bound in ordered:
+
+    normalized: list[Threshold] = []
+    for name, lower_bound in thresholds.items():
+        clean_name = name.strip()
+        if not clean_name:
+            raise ValueError("Threshold name cannot be empty")
+        if not isfinite(lower_bound):
+            raise ValueError(f"Threshold '{clean_name}' must be a finite number")
+        normalized.append(Threshold(clean_name, lower_bound))
+
+    return tuple(sorted(normalized, key=lambda threshold: threshold.lower_bound))
+
+
+def classify_normalized_level(value: float, thresholds: tuple[Threshold, ...]) -> str:
+    level = thresholds[0].name
+    for threshold in thresholds:
+        lower_bound = threshold.lower_bound
         if value >= lower_bound:
-            level = name
+            level = threshold.name
     return level
 
 
