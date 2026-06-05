@@ -43,6 +43,17 @@ class SignalAnalysisTests(unittest.TestCase):
 
         self.assertEqual([point.value for point in points], [1, 2])
 
+    def test_summary_notes_missing_comparison_window_and_gaps(self) -> None:
+        points = [
+            DataPoint(date(2026, 5, 1), 10),
+            DataPoint(date(2026, 5, 4), 20),
+        ]
+
+        summary = summarize_points(points, window=7)
+
+        self.assertIn("No full previous comparison window is available.", summary.notes)
+        self.assertTrue(any("Date gaps" in note for note in summary.notes))
+
     def test_parse_thresholds(self) -> None:
         self.assertEqual(parse_thresholds(["baseline=0", "high=50"]), {"baseline": 0.0, "high": 50.0})
 

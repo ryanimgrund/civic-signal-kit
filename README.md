@@ -12,6 +12,7 @@ The toolkit does not give medical, legal, financial, or emergency advice. It sum
 - Calculates rolling averages.
 - Compares the latest period with the previous period.
 - Classifies the latest value using user-provided thresholds.
+- Flags simple data-quality issues such as short histories, duplicate dates, and date gaps.
 - Exports a plain-language Markdown or JSON summary.
 - Uses only the Python standard library.
 
@@ -74,6 +75,19 @@ python -m civic_signal_kit path/to/data.csv \
 
 Thresholds are inclusive lower bounds. The highest threshold less than or equal to the latest rolling average becomes the level.
 
+## Examples
+
+Runnable sample CSVs live in [docs/examples](docs/examples).
+
+```sh
+python -m civic_signal_kit docs/examples/wastewater-signal.csv \
+  --date-column date \
+  --value-column concentration \
+  --threshold baseline=0 \
+  --threshold elevated=250 \
+  --threshold high=500
+```
+
 ## Project Values
 
 - Transparent assumptions.
@@ -85,10 +99,9 @@ Thresholds are inclusive lower bounds. The highest threshold less than or equal 
 ## Roadmap
 
 - Add examples for wastewater, air quality, attendance, and service-demand data.
-- Add confidence and missing-data notes.
 - Add chart export.
 - Add localization-friendly message templates.
-- Add validation reports for messy CSVs.
+- Expand validation reports for messy CSVs.
 
 ## Contributing
 

@@ -24,6 +24,7 @@ class SignalSummary:
     level: str
     window: int
     point_count: int
+    notes: tuple[str, ...] = ()
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -36,6 +37,7 @@ class SignalSummary:
             "level": self.level,
             "window": self.window,
             "point_count": self.point_count,
+            "notes": list(self.notes),
         }
 
 
@@ -101,6 +103,7 @@ def summarize_points(
         level=classify_level(rolling_average, thresholds or default_thresholds()),
         window=window,
         point_count=len(ordered),
+        notes=tuple(data_quality_notes(ordered, window=window, has_previous_window=bool(previous_window))),
     )
 
 
@@ -151,3 +154,24 @@ def direction_for(percent_change: float | None) -> str:
     if percent_change < -5:
         return "decrease"
     return "stable"
+
+
+def data_quality_notes(points: list[DataPoint], *, window: int, has_previous_window: bool) -> list[str]:
+    notes: list[str] = []
+    if len(points) < window:
+        notes.append(f"Only {len(points)} point(s) available for a {window}-point rolling average.")
+    if not has_previous_window:
+        notes.append("No full previous comparison window is available.")
+
+    duplicate_dates = len({point.observed_on for point in points}) != len(points)
+    if duplicate_dates:
+        notes.append("Duplicate dates are present; values were not aggregated before analysis.")
+
+    gaps = [
+        (later.observed_on - earlier.observed_on).days
+        for earlier, later in zip(points, points[1:])
+    ]
+    if any(gap > 1 for gap in gaps):
+        notes.append("Date gaps are present; rolling averages use available rows, not calendar-filled values.")
+
+    return notes
